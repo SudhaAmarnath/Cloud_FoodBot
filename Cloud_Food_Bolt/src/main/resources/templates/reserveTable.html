@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title></title>
+  <style type="text/css">
+ .container {
+  margin-top: 50px;
+}
+body {
+
+  background-image: linear-gradient(-90deg, #69EACB, #EACCF8);
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.topic {
+  margin-bottom: 10px;
+}
+.form {
+  margin: auto;
+  text-align: center;
+  width: 20%;
+  padding: 60px;
+  background-color: white;
+  border-radius: 10px;
+}
+input {
+  margin-top:20px;
+  width:80%;
+  position: relative;
+  left: 0;
+  outline: none;
+  border: 1px solid #cdcdcd;
+  border-color: rgba(0, 0, 0, .15);
+  background-color: white;
+  font-size: 16px;
+  padding:8px;
+  border-radius:4px;
+}
+input:focus {
+	border-color:dodgerBlue;
+}
+button {
+	padding:8px;
+	width:80%;
+	background-color:dodgerBlue;
+	color:white;
+	border-radius:4px;
+	margin-top:30px;
+}
+button:hover {
+cursor:pointer;
+}
+  </style>
+</head>
+<body>
+<div class="container">
+      <div class="form">
+        <div class="topic">
+          <center>RESERVE TABLE</center><br>
+        </div>
+<form class="modal-content" method="post" th:action="@{reserveTable}" th:object = ${ReserveTable}  enctype="multipart/form-data" >
+<input type="text" name="no_of_guests" placeholder="Number of Guests" required><br>
+<input type="date" name="BookingDate" placeholder="Date" required><br>
+<input type="time" name="BookingTime" placeholder="Time" required><br>
+<button>Submit</button>
+</form>
+</div>
+</div>
+<!-- <script type="text/javascript">
+  var today = new Date().toISOString().split('T')[0];
+document.getElementsByName("BookingDate")[0].setAttribute('min', today);
+</script> -->
+</body>
+</html>

@@ -1,7 +1,9 @@
 package edu.cloudtech.FoodBolt.controller;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +13,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.cloudtech.FoodBolt.dao.ServiceProvider;
 import edu.cloudtech.FoodBolt.dao.TableReservation;
 import edu.cloudtech.FoodBolt.service.ReservationService;
+import edu.cloudtech.FoodBolt.service.ServiceProviderService;
 
 @Controller
 public class ReservationController {
 	
 	@Autowired
 	ReservationService reservationService;
+	
+	@Autowired
+	ServiceProviderService serviceproviderService;
 	
 //	@RequestMapping(value = "/reserveTable", method = RequestMethod.GET)
 //	public List getAllCustomers() {
@@ -32,29 +39,48 @@ public class ReservationController {
 //	}
 	
 	@RequestMapping(value = "/reserveTable", method = RequestMethod.GET)
-	public String  reserveTable(Model model) {
+	public String  reserveTable(@RequestParam(value="restID", required=false) int restID,Model model, HttpSession session , HttpServletRequest request) {
+		
+		if(!isLoggedIn(request.getSession()))
+    	{
+    		return "login";
+    	}
+    	else 
 		System.out.println( "Reserve Table API"); 
+		model.addAttribute("restaurantID", restID);
+		
+		session.setAttribute("restID", restID);
+		
 		return "reserveTable";
+		
 	
 	}
 	
 	@RequestMapping(value = "/reserveTable", method = RequestMethod.POST)
-	public String  reserveTable(@ModelAttribute(name="ReserveTable") TableReservation tblReserv, Model model,  HttpSession session) {
+	public String  reserveTable(@ModelAttribute(name="ReserveTable") TableReservation tblReserv, Model model,  HttpSession session,HttpServletRequest request) {
 	
-		System.out.println("Booking date " + tblReserv.getBookingDate());
-		System.out.println("Booking Time " + tblReserv.getBookingTime());
-		System.out.println("No of gusts" + tblReserv.getNo_of_guests());
-		tblReserv.setRestaurantID(2);
-//		TableReservation reserv = new TableReservation();
-//		Date d = new Date();
-//		System.out.println("Date " + d);
-//		reserv.setRestaurantID(1);;
-//		reserv.setUserID(2);
-//		reserv.setBookingTime(d);
-//		reserv.setBookingDate(d);
-//		reserv.setNo_of_guests(5);
+		if(!isLoggedIn(request.getSession()))
+    	{
+    		return "login";
+    	}
+    	else 
+		{
+    		System.out.println("Time Stamp " + tblReserv.getBookingTime());
+    		Integer restaurantID= (Integer)session.getAttribute("restID");
+		tblReserv.setRestaurantID(restaurantID);
+		System.out.println("Dynamic Restaurant ID" + tblReserv.getRestaurantID());
+		
 		
 		 reservationService.reserveTable(tblReserv);
+		
+		 
+		 
+		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
+		
+		
+		model.addAttribute("restaurants", restaurants);
+		}
+		
 		
 		 return "restaurant";
 	
@@ -78,6 +104,16 @@ public class ReservationController {
 	
 	}
 	
+	
+	  public static Boolean isLoggedIn(HttpSession session) {
+	    	Boolean bRet = false;
+	    	if(session != null) {
+	    		bRet = (Boolean)session.getAttribute("isLoggedIn");
+	    	}
+	    	if(bRet == null)
+	    		bRet = false;
+	    	return bRet;
+	    }
 	
 	
 	

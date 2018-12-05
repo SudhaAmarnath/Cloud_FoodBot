@@ -55,7 +55,7 @@ img:hover {
   <div class="container" th:action="@{reserveTable}" >
     <h4 th:text="${restaurants.restaurant_name}" th:value="${restaurants.restaurant_id}" id="rest_id" name = "rest_id"></h4>
   <!--   <a><input  onclick="location.href='/reserveTable'" value="RestaurantLists"  /> </a> --> 
-  	<button> Reserve Table </button>
+  	<a th:href="@{/reserveTable(restID=${restaurants.restaurant_id})}"> Reserve Table </a>
   </div>
   
 </div>

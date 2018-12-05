@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "TABLE_RESERVATION")
 public class TableReservation {
@@ -26,10 +28,12 @@ public class TableReservation {
 	@Column(name ="RESTAURANT_ID")
 	int RestaurantID;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	@Column(name ="BOOKING_DATE")
 	Date BookingDate;
 	
+	@DateTimeFormat(pattern = "HH:mm" )
 	@Temporal(TemporalType.TIME)
 	@Column(name ="BOOKING_TIME")
 	Date BookingTime;

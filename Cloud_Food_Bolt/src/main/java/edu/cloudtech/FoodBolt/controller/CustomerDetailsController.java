@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.cloudtech.FoodBolt.dao.CustomerDetails;
+import edu.cloudtech.FoodBolt.dao.ServiceProvider;
 import edu.cloudtech.FoodBolt.service.CustomerDetailsService;
+import edu.cloudtech.FoodBolt.service.ServiceProviderService;
 
 
 @Controller
@@ -24,6 +26,9 @@ public class CustomerDetailsController {
 	
 	@Autowired
 	CustomerDetailsService customerDetailService;
+	
+	@Autowired
+	ServiceProviderService serviceproviderService;
 	
 	@RequestMapping(value = "/customerDetails", method = RequestMethod.GET)
 	public List getAllCustomers() {
@@ -71,7 +76,10 @@ public class CustomerDetailsController {
 		System.out.println("Default Guest" +  user.getDefault_guests());
 		customerDetailService.addCustomerDetails(user);
 		
-		return "index";	
+		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
+		model.addAttribute("restaurants", restaurants);
+		return "restaurant";
+	
 	}
 	
 	

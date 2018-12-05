@@ -18,6 +18,8 @@ public class ReservationService {
 	private TableReservationDAO tableReservationDAO;
 	
 	public void reserveTable(TableReservation tableReserve) {
+		System.out.println("REserve Table" + tableReserve.getBookingDate());
+		System.out.println("REserve Table TIME STAMP from User" + tableReserve.getBookingTime());
 		tableReservationDAO.save(tableReserve);
 	}
 	

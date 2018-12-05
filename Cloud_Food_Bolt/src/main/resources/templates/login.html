@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title></title>
+	<style>
+	.login-container {
+  text-align: center;
+  margin-top:50px;
+}
+input {
+  margin-top:20px;
+  width:80%;
+  position: relative;
+  left: 0;
+  outline: none;
+  border: 1px solid #cdcdcd;
+  border-color: rgba(0, 0, 0, .15);
+  background-color: white;
+  font-size: 16px;
+  padding:8px;
+  border-radius:4px;
+}
+input:focus {
+	border-color:dodgerBlue;
+}
+button {
+	padding:8px;
+	width:80%;
+	background-color:dodgerBlue;
+	color:white;
+	border-radius:4px;
+	margin-top:20px;
+}
+.split {
+  height: 100%;
+  width: 35%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.left {
+  left: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../icons/signup.jpg");
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 65%;
+}
+.right {
+  right: 0;
+  background: #fff;
+}
+select { 
+display:inline-block;
+width:45%;
+    padding: 10px 70px 10px 13px; 
+    border: 1px solid #e3e3e3; 
+    border-radius: 3px; 
+    background-color: #fff; 
+    color: #444444; 
+    font-size: 12px; 
+    appearance: none; 
+	-webkit-appearance: none; 
+    -moz-appearance: none; 
+    margin-top:20px;
+} 
+select option { 
+    padding: 0 4px; 
+} 
+	
+	</style>
+</head>
+<body>
+
+	<div class="split left">
+	</div>
+        <div class="split right">
+          <div class="login-container">
+	LOGIN
+<!--  <form method="post">  -->
+<form class="modal-content" method="post" th:action="@{login}" th:object = ${CustomerDetails}  enctype="multipart/form-data" >
+	<input type="email" id="email" name="email" placeholder="Email" required><br>
+	<input type="password" id="password" name="password" placeholder="Password" required><br>
+	<p th:if="${error}" th:text="${errorMessage}" class = "error"> </p>
+	<button>Submit</button>
+</form>
+</div>
+</div>
+</body>
+</html>
