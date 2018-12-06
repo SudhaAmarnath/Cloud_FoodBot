@@ -9,15 +9,14 @@
 
 <div class="card" th:each ="restaurants : ${restaurants}">
 
-<div class="card">
-  <img src="icons/rest1.jpg" alt="Avatar" style="width:100%">
+ <a th:href="@{/reserveTable(restID=${restaurants.restaurant_id})}"><img src="icons/rest1.jpg" alt="Avatar" style="width:100%"></a>
   <div class="container" th:action="@{reserveTable}" >
     <h4 th:text="${restaurants.restaurant_name}" th:value="${restaurants.restaurant_id}" id="rest_id" name = "rest_id"></h4>
   <!--   <a><input  onclick="location.href='/reserveTable'" value="RestaurantLists"  /> </a> --> 
-  	<a th:href="@{/reserveTable(restID=${restaurants.restaurant_id})}"> Reserve Table </a>
+  	<!-- <a th:href="@{/reserveTable(restID=${restaurants.restaurant_id})}"> Reserve Table </a> -->
   </div>
   
-</div>
+
 
 </div>
 

@@ -1,6 +1,9 @@
 body {
-  margin: 0;
-  background-color: grey;
+  margin-left:300px;
+background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("/icons/home.jpg");
+  background-color: black;
+      background-size: cover;
 }
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
