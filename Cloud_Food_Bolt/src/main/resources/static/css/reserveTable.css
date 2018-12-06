@@ -1,0 +1,46 @@
+.container {
+  margin-top: 50px;
+}
+body {
+
+  background-image: linear-gradient(-90deg, #69EACB, #EACCF8);
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.topic {
+  margin-bottom: 10px;
+}
+.form {
+  margin: auto;
+  text-align: center;
+  width: 20%;
+  padding: 60px;
+  background-color: white;
+  border-radius: 10px;
+}
+input {
+  margin-top:20px;
+  width:80%;
+  position: relative;
+  left: 0;
+  outline: none;
+  border: 1px solid #cdcdcd;
+  border-color: rgba(0, 0, 0, .15);
+  background-color: white;
+  font-size: 16px;
+  padding:8px;
+  border-radius:4px;
+}
+input:focus {
+	border-color:dodgerBlue;
+}
+button {
+	padding:8px;
+	width:80%;
+	background-color:dodgerBlue;
+	color:white;
+	border-radius:4px;
+	margin-top:30px;
+}
+button:hover {
+cursor:pointer;
+}
