@@ -41,6 +41,9 @@ public class ServiceProvider {
 	@Column(name = "IS_ACTIVE")
 	String is_active;
 	
+	@Column(name = "PASSWORD")
+	String password;
+	
 	
 	public ServiceProvider() {
 		super();
@@ -48,7 +51,7 @@ public class ServiceProvider {
 	
 
 	public ServiceProvider(String restaurant_name, String email, String city, String state, String cuisine_typ,
-			int total_tables, int total_occupancy) {
+			int total_tables, int total_occupancy, String password) {
 		super();
 		this.restaurant_name = restaurant_name;
 		this.email = email;
@@ -57,7 +60,20 @@ public class ServiceProvider {
 		this.cuisine_typ = cuisine_typ;
 		this.total_tables = total_tables;
 		this.total_occupancy = total_occupancy;
+		this.password= password;
 	}
+	
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 
 	public int getRestaurant_id() {
 		return restaurant_id;

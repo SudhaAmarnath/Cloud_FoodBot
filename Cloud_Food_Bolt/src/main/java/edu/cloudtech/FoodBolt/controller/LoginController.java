@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import edu.cloudtech.FoodBolt.dao.CustomerDetails;
 import edu.cloudtech.FoodBolt.dao.ServiceProvider;
+import edu.cloudtech.FoodBolt.dao.TableReservation;
+import edu.cloudtech.FoodBolt.service.ReservationService;
+import edu.cloudtech.FoodBolt.service.ServiceProvideRowMapper;
 import edu.cloudtech.FoodBolt.service.ServiceProviderService;
 import edu.cloudtech.FoodBolt.service.UserRowMapper;
 
@@ -29,6 +32,8 @@ public class LoginController {
 	@Autowired
 	ServiceProviderService serviceproviderService;
 	
+	@Autowired
+	ReservationService reservationService;
 	
 	@GetMapping("/login")
 	public String getLogin() {
@@ -101,6 +106,84 @@ public class LoginController {
 	
 			
 	}
+	
+	@GetMapping("/loginservice")
+	public String getServiceLogin() {
+	
+		System.out.println("In Login Controller");
+		return "login";
+	}
+	
+	@PostMapping("/loginservice")
+	public String loginService(@ModelAttribute(name="ServiceProvider") ServiceProvider serviceProvider, Model model,  HttpSession session) {
+		
+		String Username = serviceProvider.getEmail();
+		String Password = serviceProvider.getPassword();
+		String DB_Username = "";
+		String DB_Password = "";
+		int DB_RestaurantID =0;
+		String Middle_Name ="";
+		String Last_Name ="";
+		String default_no_of_Guests="";
+		String CuisineType="";
+		String SELECT_SQL = "SELECT * FROM ServiceProvider where Email = ?";
+		
+		session.setAttribute("isLoggedIn", true);
+		session.setAttribute("email", Username);
+
+		ServiceProvider service = null;
+		try {
+			service = jdbcTemplate.queryForObject(SELECT_SQL, new ServiceProvideRowMapper(), serviceProvider.getEmail());
+		} catch(DataAccessException dae) {
+			dae.printStackTrace();
+		}
+		
+		if(service == null) {
+			model.addAttribute("error", true);
+			model.addAttribute("errorMessage", "UserNotAvailable");
+			return "login";
+		}
+		DB_Username =service.getEmail();
+		DB_Password =service.getPassword();
+		DB_RestaurantID= service.getRestaurant_id();
+		/*First_Name=user.getFirst_name();
+		Last_Name=user.getLast_name();
+		CuisineType=user.getPref_cuisin_typ();
+
+		default_no_of_Guests=user.getDefault_guests()*/;
+		
+		session.setAttribute("restID", DB_RestaurantID);
+		/*session.setAttribute("middleName", Middle_Name);
+		session.setAttribute("lastName", Last_Name);
+		session.setAttribute("cuisineType", CuisineType);
+		session.setAttribute("default_no_of_guests", default_no_of_Guests);
+	 */
+			
+		if(DB_Username.isEmpty() || DB_Username == null) {
+			model.addAttribute("error", true);
+			model.addAttribute("errorMessage", "UserNotAvailable");
+			return "login";
+		}
+		else if(DB_Username.equals(Username) && DB_Password.equals(Password)) {
+			
+			
+			
+			
+			List<TableReservation> reservation = reservationService.getReservationByRestaurantID(DB_RestaurantID);
+					
+				serviceproviderService.getServiceProvider(DB_RestaurantID);
+			model.addAttribute("reservation", reservation);
+			 return "ServiceProvider";
+		}
+		else {
+			model.addAttribute("error", true);
+			model.addAttribute("errorMessage", "InvalidCredential");
+			return "login";
+		}
+	
+			
+	}
+
 	
 	@GetMapping("/logout")
 	public String signout(Model model, HttpServletRequest request) {

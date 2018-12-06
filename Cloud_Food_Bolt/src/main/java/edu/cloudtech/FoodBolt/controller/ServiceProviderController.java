@@ -34,18 +34,13 @@ public class ServiceProviderController {
 	@RequestMapping(value = "/serviceProvider", method = RequestMethod.GET)
 	public String getAllRestaurants(Model model, HttpServletRequest request) {
 		
-//		if(!isLoggedIn(request.getSession()))
-//    	{
-//    		return "login";
-//    	}
-//    	else 
-//		{
+
 		System.out.println("In all Restaurant controller");
 		System.out.println("Restaurant Details" + serviceproviderService.getAllServiceProviders());
 		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
 		model.addAttribute("restaurants", restaurants);
 //		}
-		return "restaurant";
+		return "ServiceProvider";
 	}
 	
 	@RequestMapping(value = "/serviceProvider/{restaurant_id}", method = RequestMethod.GET)

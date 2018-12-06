@@ -9,16 +9,6 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 public class WebAppMain {
 
-	/*public static void main(String[] args) {
-	    SpringApplication app = new SpringApplication(WebAppMain.class);
-	    System.out.print("Starting app with System Args: [" );
-	    for (String s : args) {
-	      System.out.print(s + " ");
-	    }
-	    System.out.println("]");
-	    app.run(args);
-	  }*/
-
 
 	  @Bean
 	  public ViewResolver viewResolver() {

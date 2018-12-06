@@ -12,13 +12,9 @@ import edu.cloudtech.FoodBolt.chatbot.FoodboltLambda;
 @SpringBootApplication
 public class FoodBoltApplication {
 	
-	 @PostConstruct
-	  void started() {
-	    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-	  }
 
 	public static void main(String[] args) {
 		SpringApplication.run(FoodBoltApplication.class, args);
-		new FoodboltLambda();
+//		new FoodboltLambda();
 	}
 }

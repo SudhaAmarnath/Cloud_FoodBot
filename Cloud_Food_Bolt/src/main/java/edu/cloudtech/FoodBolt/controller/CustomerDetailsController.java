@@ -68,7 +68,6 @@ public class CustomerDetailsController {
 		return "signup";
 	}
 	
-	
 	@RequestMapping(value = "/Signup", method = RequestMethod.POST)
 	public String addCustomer(@ModelAttribute(name="CustomerDetails") CustomerDetails user, Model model,  HttpSession session) {
 		
@@ -81,9 +80,4 @@ public class CustomerDetailsController {
 		return "restaurant";
 	
 	}
-	
-	
-	
-	
-	
 }

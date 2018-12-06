@@ -68,6 +68,7 @@ public class ReservationController {
     		System.out.println("Time Stamp " + tblReserv.getBookingTime());
     		Integer restaurantID= (Integer)session.getAttribute("restID");
 		tblReserv.setRestaurantID(restaurantID);
+		tblReserv.setStatus("RESERVED");
 		System.out.println("Dynamic Restaurant ID" + tblReserv.getRestaurantID());
 		
 		

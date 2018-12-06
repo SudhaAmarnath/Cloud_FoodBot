@@ -41,6 +41,8 @@ public class TableReservation {
 	@Column(name ="NO_OF_GUESTS")
 	int no_of_guests;
 	
+	@Column(name ="STATUS")
+	String status;
 	
 	public TableReservation() {
 		super();
@@ -48,13 +50,27 @@ public class TableReservation {
 	
 	
 
-	public TableReservation(int userID, int restaurantID, Date bookingTime, int no_of_guests) {
+	public TableReservation(int userID, int restaurantID, Date bookingTime, int no_of_guests ,String status ) {
 		super();
 		UserID = userID;
 		RestaurantID = restaurantID;
 		BookingTime = bookingTime;
 		this.no_of_guests = no_of_guests;
+		this.status = status;
 	}
+	
+
+	public String  getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
 
 	public int getBookingID() {
 		return BookingID;
