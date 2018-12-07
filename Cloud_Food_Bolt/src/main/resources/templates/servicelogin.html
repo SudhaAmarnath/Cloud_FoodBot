@@ -2,19 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>FoodBolt</title>
-<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" type="text/css" href="css/servicelogin.css"/>
 </head>
 <body>
+	
 	<div class="split left">
 	</div>
         <div class="split right">
           <div class="login-container">
-	LOGIN
-<!--  <form method="post">  -->
-<form class="modal-content" method="post" th:action="@{login}" th:object = ${CustomerDetails}  enctype="multipart/form-data" >
+	RESTAURANT LOGIN
+<form class="modal-content" method="post" th:action="@{addServiceProvider}" th:object = ${ServiceProvder}  enctype="multipart/form-data" >
 	<input type="email" id="email" name="email" placeholder="Email" required><br>
 	<input type="password" id="password" name="password" placeholder="Password" required><br>
-	<p th:if="${error}" th:text="${errorMessage}" class = "error"> </p>
 	<button>Submit</button>
 </form>
 </div>
