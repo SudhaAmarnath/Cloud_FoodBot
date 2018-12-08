@@ -1,5 +1,5 @@
 body {
-  margin-left:300px;
+  
 background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("/icons/home.jpg");
   background-color: black;
@@ -126,10 +126,11 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     transition: 0.3s;
     width: 20%;
     border-radius: 5px;
-    margin-top: 50px;
+    margin-top: 150px;
     display:inline-block;
     margin-right: 20px;
     overflow: hidden;
+    margin-left:50px;
 }
 
 .card:hover {
