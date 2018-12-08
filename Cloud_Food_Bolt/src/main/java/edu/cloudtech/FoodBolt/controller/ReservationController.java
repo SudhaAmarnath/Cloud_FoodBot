@@ -96,6 +96,26 @@ public class ReservationController {
 	
 	}
 	
+	
+	@RequestMapping(value = "/cancelReservation/{bookingID}", method = RequestMethod.GET)
+	public String  cancelReservation(@PathVariable int bookingID, Model model, HttpSession session) {
+		
+		//Need to test this
+		TableReservation reserv = new TableReservation();
+		 reservationService.cancelReservation(bookingID);
+		
+		 
+		 int rest_id = (Integer) session.getAttribute("restID");
+		 
+		 List<TableReservation> reservation = reservationService.getReservationByRestaurantID(rest_id);
+			
+			serviceproviderService.getServiceProvider(rest_id);
+		model.addAttribute("reservation", reservation);
+		 return "ServiceProvider";
+	}
+	
+	
+	
 	@RequestMapping(value = "/findAvailability/{restID}", method = RequestMethod.POST)
 	public TableReservation  findAvailability(@PathVariable int restID) {
 		
@@ -103,8 +123,7 @@ public class ReservationController {
 		TableReservation reserv = new TableReservation();
 		 return reservationService.getReservationByID(restID);
 	
-	}
-	
+	}	
 	
 	  public static Boolean isLoggedIn(HttpSession session) {
 	    	Boolean bRet = false;

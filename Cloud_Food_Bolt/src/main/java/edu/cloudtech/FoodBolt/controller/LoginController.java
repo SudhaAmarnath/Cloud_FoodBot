@@ -111,7 +111,7 @@ public class LoginController {
 	public String getServiceLogin() {
 	
 		System.out.println("In Login Controller");
-		return "login";
+		return "servicelogin";
 	}
 	
 	@PostMapping("/loginservice")
@@ -126,7 +126,7 @@ public class LoginController {
 		String Last_Name ="";
 		String default_no_of_Guests="";
 		String CuisineType="";
-		String SELECT_SQL = "SELECT * FROM ServiceProvider where Email = ?";
+		String SELECT_SQL = "SELECT * FROM SERVICE_PROVIDER where Email = ?";
 		
 		session.setAttribute("isLoggedIn", true);
 		session.setAttribute("email", Username);
@@ -141,11 +141,13 @@ public class LoginController {
 		if(service == null) {
 			model.addAttribute("error", true);
 			model.addAttribute("errorMessage", "UserNotAvailable");
-			return "login";
+			return "ServiceProvider";
 		}
 		DB_Username =service.getEmail();
 		DB_Password =service.getPassword();
 		DB_RestaurantID= service.getRestaurant_id();
+		
+		System.out.println("DB_RestaurantID --- " + DB_RestaurantID);
 		/*First_Name=user.getFirst_name();
 		Last_Name=user.getLast_name();
 		CuisineType=user.getPref_cuisin_typ();
@@ -162,7 +164,7 @@ public class LoginController {
 		if(DB_Username.isEmpty() || DB_Username == null) {
 			model.addAttribute("error", true);
 			model.addAttribute("errorMessage", "UserNotAvailable");
-			return "login";
+			return "servicelogin";
 		}
 		else if(DB_Username.equals(Username) && DB_Password.equals(Password)) {
 			
@@ -195,7 +197,7 @@ public class LoginController {
 		request.getSession().setAttribute("default_no_of_guests", "");
 	 
 		
-		return "Login";
+		return "login";
 	}
 
 	

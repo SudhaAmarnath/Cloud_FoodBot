@@ -1,6 +1,7 @@
 package edu.cloudtech.FoodBolt.service;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import edu.cloudtech.FoodBolt.dao.TableReservation;
 import edu.cloudtech.FoodBolt.dao.TableReservationDAO;
+
 
 
 
@@ -81,11 +83,42 @@ public class ReservationService {
 	        }
 	    }	
 		
-		return reservationList;
-
-		
+		return reservationList;	
 	}
 	
+	public void cancelReservation(int BookingID) {
+		System.out.println("Booking ID " + BookingID);
+		
+		Connection connection = null;
+		System.out.println("Cancell Booking for" + BookingID);
 	
+		
+		String UPDT_SQL = "UPDATE TABLE_RESERVATION SET STATUS = ?  where BOOKING_ID= ? ";
+		
+		try{
+		connection = jdbcTemplate.getDataSource().getConnection();
+		PreparedStatement preparedstatement = connection.prepareStatement(UPDT_SQL);
+		preparedstatement.setString(1, "CANCELLED");
+		preparedstatement.setInt(2, BookingID);
+		
+		preparedstatement.executeUpdate();
+		preparedstatement.close();
+		}catch (SQLException e) {
 
+            throw new RuntimeException(e);
+
+        } finally {
+            if (connection != null) {
+                try {
+                	connection.close();
+                } catch (SQLException e) {}
+
+            }
+        }
+	}
+	
 }
+		
+		
+		
+		
