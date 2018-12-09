@@ -1,4 +1,4 @@
-/*
+
 package edu.cloudtech.FoodBolt;
 
 import org.junit.Test;
@@ -15,4 +15,4 @@ public class FoodBoltApplicationTests {
 	}
 
 }
-*/
+
