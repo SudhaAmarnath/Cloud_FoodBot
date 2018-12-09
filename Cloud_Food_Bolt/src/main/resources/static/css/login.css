@@ -91,4 +91,9 @@ li a {
 li a:hover {
   background-color: #111;
 }
-	
+
+.g-signin2{
+	margin-left:300px;
+	margin-right:500px;
+	margin-top:20px;
+}
