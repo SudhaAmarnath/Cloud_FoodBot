@@ -63,10 +63,12 @@ public class LoginController {
 		String First_Name ="";
 		String Middle_Name ="";
 		String Last_Name ="";
-		String default_no_of_Guests="";
+		int default_no_of_Guests=0;
 		String CuisineType="";
+		int cust_ID = 0;
 		String SELECT_SQL = "SELECT * FROM CUST_DETAILS where Email = ?";
 		
+		System.out.println("Gmail " + Username);
 		session.setAttribute("isLoggedIn", true);
 		session.setAttribute("email", Username);
 
@@ -87,6 +89,7 @@ public class LoginController {
 		First_Name=user.getFirst_name();
 		Last_Name=user.getLast_name();
 		CuisineType=user.getPref_cuisin_typ();
+		cust_ID = user.getCust_id();
 
 		default_no_of_Guests=user.getDefault_guests();
 		
@@ -95,7 +98,9 @@ public class LoginController {
 		session.setAttribute("lastName", Last_Name);
 		session.setAttribute("cuisineType", CuisineType);
 		session.setAttribute("default_no_of_guests", default_no_of_Guests);
-	 
+		session.setAttribute("cust_ID", cust_ID);
+		System.out.println("Customer id in login cotroller" + cust_ID  + " " + user.getCust_id());
+		System.out.println("Customer id in login cotroller" + cust_ID  + " " + user.getEmail());
 			
 		if(DB_Username.isEmpty() || DB_Username == null) {
 			model.addAttribute("error", true);
@@ -257,6 +262,9 @@ public class LoginController {
 		request.getSession().setAttribute("lastName", "");
 		request.getSession().setAttribute("cuisineType", "");
 		request.getSession().setAttribute("default_no_of_guests", "");
+		request.getSession().setAttribute("cust_ID", "");
+		
+	 
 		
 		Cookie[] cookies = request.getCookies();
 	    if (cookies != null)

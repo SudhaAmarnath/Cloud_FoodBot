@@ -2,6 +2,7 @@ package edu.cloudtech.FoodBolt.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,14 +40,43 @@ public class CustomerDetailsController {
 		
 	}
 	
-	@RequestMapping(value = "/customerDetails/{cust_id}", method = RequestMethod.GET)
-	public CustomerDetails getCustomer(@PathVariable int cust_id) {
+//	@GetMapping("/userprofile")
+//	public String userprofile() {
+//	System.out.println("Inside Get method ****");
+////	Console.log("Inside get method");
+//		return "userprofile_template.html";
+//	}
+	
+	
+	@RequestMapping(value = "/userprofile", method = RequestMethod.GET)
+	public String getCustome(Model model, HttpServletRequest request) {
 		
+		int cust_id = (int)request.getSession().getAttribute("cust_ID");
 		CustomerDetails cust = customerDetailService.getCustomerDetails(cust_id);
+		
 		System.out.println("In Customer controller with Cust ID " + cust_id);
 		System.out.println("CUST ID FROM DB " + cust.getCust_id());
+		model.addAttribute("userDetails", cust);
 		
-		return customerDetailService.getCustomerDetails(cust_id);
+		return "userprofile";
+		
+	}
+	
+	@RequestMapping(value = "/userprofile", method = RequestMethod.POST)
+	public String updateCustome(@ModelAttribute(name="CustomerDetails") CustomerDetails user ,Model model, HttpServletRequest request) {
+		
+		int cust_id = (int)request.getSession().getAttribute("cust_ID");
+//		CustomerDetails cust = customerDetailService.getCustomerDetails(cust_id);
+//		
+		user.setCust_id(cust_id);
+		System.out.println("User ID "  + user);
+		customerDetailService.updateUser(user);
+		
+		System.out.println("In Customer controller with Cust ID " + user);
+		System.out.println("CUST ID FROM DB " + user.getCust_id());
+		model.addAttribute("userDetails", user);
+		
+		return "userprofile";
 		
 	}
 	
