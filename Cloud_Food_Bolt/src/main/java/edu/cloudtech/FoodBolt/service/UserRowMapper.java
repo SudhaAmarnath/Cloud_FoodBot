@@ -18,6 +18,13 @@ public class UserRowMapper implements RowMapper<CustomerDetails> {
 		user.setPassword(rs.getString("Password"));
 		user.setFirst_name(rs.getString("First_Name"));
 		user.setLast_name(rs.getString("Last_Name"));
+		user.setCust_id(rs.getInt("cust_id"));
+		user.setState(rs.getString("State"));
+		user.setPref_cuisin_typ(rs.getString("pref_cuisin_typ"));
+		user.setPref_restaurantID(rs.getInt("pref_restaurantID"));
+		user.setPref_bookingTime(rs.getTime("BOOKING_TIME"));
+		user.setDefault_guests(rs.getInt("default_guests"));
+		
 		return user;
 	}
 }

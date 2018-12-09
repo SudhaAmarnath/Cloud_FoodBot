@@ -1,11 +1,17 @@
 package edu.cloudtech.FoodBolt.dao;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "CUST_DETAILS")
@@ -37,7 +43,7 @@ public class CustomerDetails {
 	String pref_cuisin_typ;
 	
 	@Column(name = "DEFAULT_GUESTS")
-	String default_guests;
+	int default_guests;
 	
 	@Column(name = "IS_ACTIVE")
 	String is_active;
@@ -45,12 +51,22 @@ public class CustomerDetails {
 	@Column(name = "PASSWORD")
 	String password;
 	
+	@Column(name = "PREF_RESTAURANTID")
+	int pref_restaurantID;
+	
+	@DateTimeFormat(pattern = "HH:mm" )
+	@Temporal(TemporalType.TIME)
+	@Column(name = "BOOKING_TIME")
+	Date pref_bookingTime;
+	
+	
+	
 	
 	
 	
 
 	public CustomerDetails(String first_name, String last_name, String email, String city,
-			String state, String pref_cuisin_typ, String default_guests) {
+			String state, String pref_cuisin_typ, int default_guests) {
 		super();
 		this.first_name = first_name;
 		
@@ -67,6 +83,22 @@ public class CustomerDetails {
 	}
 	
 	
+
+	public int getPref_restaurantID() {
+		return pref_restaurantID;
+	}
+
+	public void setPref_restaurantID(int pref_restaurantID) {
+		this.pref_restaurantID = pref_restaurantID;
+	}
+
+	public Date getPref_bookingTime() {
+		return pref_bookingTime;
+	}
+
+	public void setPref_bookingTime(Date pref_bookingTime) {
+		this.pref_bookingTime = pref_bookingTime;
+	}
 
 	public int getCust_id() {
 		return cust_id;
@@ -124,11 +156,11 @@ public class CustomerDetails {
 		this.pref_cuisin_typ = pref_cuisin_typ;
 	}
 
-	public String getDefault_guests() {
+	public int getDefault_guests() {
 		return default_guests;
 	}
 
-	public void setDefault_guests(String default_guests) {
+	public void setDefault_guests(int default_guests) {
 		this.default_guests = default_guests;
 	}
 

@@ -66,7 +66,7 @@ public class ServiceProviderController {
 	public String  addServiceProvider(@ModelAttribute(name="ServiceProvder") ServiceProvider servProv, Model model,  HttpSession session) {
 	
 		serviceproviderService.addServiceProviders(servProv);
-		return "/";
+		return "servicelogin";
 	}
 	
 	
