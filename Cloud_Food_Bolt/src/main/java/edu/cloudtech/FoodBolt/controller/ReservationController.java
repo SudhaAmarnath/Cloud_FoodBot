@@ -70,12 +70,8 @@ public class ReservationController {
 		tblReserv.setRestaurantID(restaurantID);
 		tblReserv.setStatus("RESERVED");
 		System.out.println("Dynamic Restaurant ID" + tblReserv.getRestaurantID());
-		
-		
 		 reservationService.reserveTable(tblReserv);
-		
-		 
-		 
+	 
 		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
 		
 		

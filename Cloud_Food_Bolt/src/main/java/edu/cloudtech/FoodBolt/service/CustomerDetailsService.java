@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,13 +54,15 @@ public class CustomerDetailsService {
 	
 public void updateUser(CustomerDetails userDetails) {
 		
+		Date date = new Date();
+		Time t = new java.sql.Time(date.getTime());
 		
 		Connection connection = null;
 		System.out.println("Add User Update Control" + userDetails.getCust_id());
 		System.out.println(userDetails.getFirst_name());
 		System.out.println(userDetails.getLast_name());
 		
-		String UPDT_SQL = "UPDATE CUST_DETAILS SET FIRST_NAME = ?, LAST_NAME = ?,  CITY = ?, STATE = ?, DEFAULT_GUESTS = ?, BOOKING_TIME = ?, PREF_RESTAURANTID = ? where USER_ID=?";
+		String UPDT_SQL = "UPDATE CUST_DETAILS SET FIRST_NAME = ?, LAST_NAME = ?,  CITY = ?, STATE = ?, DEFAULT_GUESTS = ?, BOOKING_TIME = ?, PREF_RESTAURANTID = ? where CUST_ID=?";
 		
 		
 		try{
@@ -70,7 +73,7 @@ public void updateUser(CustomerDetails userDetails) {
 		preparedstatement.setString(3, userDetails.getCity());
 		preparedstatement.setString(4, userDetails.getState());
 		preparedstatement.setInt(5, userDetails.getDefault_guests());
-		preparedstatement.setTime(6, (Time)userDetails.getPref_bookingTime());
+		preparedstatement.setTime(6, new java.sql.Time((userDetails.getPref_bookingTime()).getTime()));
 		preparedstatement.setInt(7, 2);
 		preparedstatement.setInt(8, userDetails.getCust_id());
 		

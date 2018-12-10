@@ -337,14 +337,14 @@ li.dropdown {
 
 							
 
-							<div class="row">
+					 	<div class="row">
 								<div class="col-md-7">
 									<label>Preferred No.of Guests</label>
 								</div>
 								<div class="col-md-5 uservalue">
 									<h6 th:text="${userDetails.default_guests}"></h6>
 								</div>
-							</div>
+							</div> 
 							
 							
 							<div class="row">
@@ -352,7 +352,8 @@ li.dropdown {
 									<label>Preferred Restaurant</label>
 								</div>
 								<div class="col-md-5 uservalue">
-									<h6 th:text="${userDetails.pref_restaurantID}"></h6>
+									<h6 th:text="${RestaurantName}"></h6>
+									
 								</div>
 							</div>
 							
@@ -378,8 +379,8 @@ li.dropdown {
 										<label>First Name</label>
 									</div>
 									<div class="col-md-5 uservalue">
-										<input type="text" class="form-control" id="firstName"
-											name="firstName">
+										<input type="text" class="form-control" id="first_name"
+											name="first_name">
 									</div>
 								</div>
 								<div class="row">
@@ -388,7 +389,7 @@ li.dropdown {
 									</div>
 									<div class="col-md-5 uservalue">
 										<input type="text" class="form-control" id="lastName"
-											name="lastName">
+											name="last_name">
 									</div>
 								</div>
 								<div class="row">
@@ -414,7 +415,11 @@ li.dropdown {
 										<label>Preferred Restaurant</label>
 									</div>
 									<div class="col-md-5 uservalue">
-										<input type="text" class="form-control" id="state" name="bio">
+										
+										<select  name= "pref_restaurantID">
+										<option th:each ="restaurants : ${restaurants}" th:value="${restaurants.restaurant_id}" th:text="${restaurants.restaurant_name}"></option>
+									</select>
+									
 									</div>
 								</div>
 
@@ -423,20 +428,21 @@ li.dropdown {
 										<label>Preferred Timing</label>
 									</div>
 									<div class="col-md-5 uservalue">
-										<input type="text" class="form-control" id="state" name="bio">
+										<input type="time" class="form-control" id="pref_bookingTime" name="pref_bookingTime">
 									</div>
 								</div>
 
-								<div class="row">
+							 	<div class="row">
 									<div class="col-md-7">
 										<label>Preferred No. Guests</label>
 									</div>
 									<div class="col-md-5 uservalue">
-										<input type="text" class="form-control" id="state" name="bio">
+										<input type="text" class="form-control" id="default_guests" name="default_guests">
 									</div>
-								</div>
-						</form>
+								</div> 
 						<button type="submit" class="btn btn-primary"><b>Update Profile</b></button>
+						</form>
+						
 						</div>
 						<div>
 			         </div>

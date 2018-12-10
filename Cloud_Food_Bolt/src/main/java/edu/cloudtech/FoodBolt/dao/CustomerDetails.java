@@ -59,11 +59,7 @@ public class CustomerDetails {
 	@Column(name = "BOOKING_TIME")
 	Date pref_bookingTime;
 	
-	
-	
-	
-	
-	
+
 
 	public CustomerDetails(String first_name, String last_name, String email, String city,
 			String state, String pref_cuisin_typ, int default_guests) {
