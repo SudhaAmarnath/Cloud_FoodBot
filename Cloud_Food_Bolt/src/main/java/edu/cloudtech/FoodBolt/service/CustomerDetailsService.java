@@ -37,11 +37,7 @@ public class CustomerDetailsService {
 	public CustomerDetails getCustomerDetails(int cust_id) {
 		
 		System.out.println("Cust Id" + cust_id);
-//		List<CustomerDetails> cust = customerdetailsDAO.findById(cust_id);
-		
-//		Optional<CustomerDetails> optCustomerDetails = customerdetailsDAO.findById(cust_id).orElse(null);
-//		System.out.println("In Service Class" + optCustomerDetails);
-//		CustomerDetails customerDetails = optCustomerDetails.get();
+
 		return customerdetailsDAO.findById(cust_id).orElse(null);
 		
 	}
@@ -74,7 +70,7 @@ public void updateUser(CustomerDetails userDetails) {
 		preparedstatement.setString(4, userDetails.getState());
 		preparedstatement.setInt(5, userDetails.getDefault_guests());
 		preparedstatement.setTime(6, new java.sql.Time((userDetails.getPref_bookingTime()).getTime()));
-		preparedstatement.setInt(7, 2);
+		preparedstatement.setInt(7, userDetails.getPref_restaurantID());
 		preparedstatement.setInt(8, userDetails.getCust_id());
 		
 		preparedstatement.executeUpdate();

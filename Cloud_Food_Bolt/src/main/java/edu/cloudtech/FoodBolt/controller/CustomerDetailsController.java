@@ -54,17 +54,19 @@ public class CustomerDetailsController {
 		int cust_id = (int)request.getSession().getAttribute("cust_ID");
 		CustomerDetails cust = customerDetailService.getCustomerDetails(cust_id);
 		
-		System.out.println("In Customer controller with Cust ID " + cust_id);
+		System.out.println("In Customer controller with Cust ID " + cust.getPref_restaurantID());
 		System.out.println("CUST ID FROM DB " + cust.getCust_id());
 		model.addAttribute("userDetails", cust);
 		
+		if(cust.getPref_restaurantID() != 0) {
+		
+			List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
+			ServiceProvider serPrv = serviceproviderService.getServiceProvider(cust.getPref_restaurantID());
+			model.addAttribute("RestaurantName", serPrv.getRestaurant_name());
+			model.addAttribute("restaurants", restaurants);
+		}
 		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
-		ServiceProvider serPrv = serviceproviderService.getServiceProvider(cust.getPref_restaurantID());
-		
-		System.out.println("Restaurant Name  " + serPrv.getRestaurant_name());
-		
 		model.addAttribute("restaurants", restaurants);
-		model.addAttribute("RestaurantName", serPrv.getRestaurant_name());
 		return "userprofile";
 		
 	}
@@ -74,10 +76,7 @@ public class CustomerDetailsController {
 		
 		int cust_id = (int)request.getSession().getAttribute("cust_ID");
 		CustomerDetails cust = customerDetailService.getCustomerDetails(cust_id);
-//		CustomerDetails cust = customerDetailService.getCustomerDetails(cust_id);
-//		
-		
-//		int restaurantID= (int)session.getAttribute("restID");
+
 		user.setCust_id(cust_id);
 		System.out.println("User ID "  + user);
 		customerDetailService.updateUser(user);
@@ -86,14 +85,19 @@ public class CustomerDetailsController {
 		System.out.println("CUST ID FROM DB " + user.getCust_id());
 		model.addAttribute("userDetails", user);
 
+		if(cust.getPref_restaurantID() != 0) {
 		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
 		System.out.println("Size of restaurants --" + restaurants.size());
 		ServiceProvider serPrv = serviceproviderService.getServiceProvider(cust.getPref_restaurantID());
-		
-		model.addAttribute("userDetails", cust);
 		model.addAttribute("restaurants", restaurants);
 		model.addAttribute("RestaurantName", serPrv.getRestaurant_name());
 		
+		model.addAttribute("userDetails", cust);
+		}
+		
+		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
+		model.addAttribute("restaurants", restaurants);
+		model.addAttribute("userDetails", cust);
 		return "userprofile";
 		
 	}
