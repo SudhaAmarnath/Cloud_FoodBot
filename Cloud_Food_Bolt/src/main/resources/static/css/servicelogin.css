@@ -2,7 +2,7 @@
   text-align: center;
   margin-top:150px;
 }
-.form1 {
+input {
   margin-top:20px;
   width:60%;
   position: relative;
@@ -15,10 +15,10 @@
   padding:8px;
   border-radius:4px;
 }
-.form1:focus {
+input:focus {
 	border-color:dodgerBlue;
 }
-.buton {
+button {
 	padding:8px;
 	width:60%;
 	background-color:deepskyblue;
@@ -38,7 +38,7 @@
 .left {
   left: 0;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../icons/signup.jpg");
+    url("../icons/login.jpg");
   background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
@@ -92,9 +92,4 @@ li a:hover {
   background-color: #111;
   cursor:pointer;
 }
-
-.g-signin2{
-	margin-left:300px;
-	margin-right:500px;
-	margin-top:20px;
-}
+	

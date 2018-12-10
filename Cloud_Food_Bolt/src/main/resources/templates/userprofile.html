@@ -1,244 +1,508 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RecipeBook MyProfile</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link href="/static/test.css" rel="stylesheet">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FoodBolt UserProfile</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="/static/test.css" rel="stylesheet">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style>
-
 .emp-profile {
-width: 100%;
-margin-top: 5%;
+	width: 100%;
+	margin-top: 5%;
 }
+
 .profile-pic {
-float: left;
-width: 30%;
+	float: left;
+	width: 30%;
 }
+
 .profile {
-width: 100%;
-    margin-top: 9%;
+	width: 100%;
+	margin-top: 9%;
+}
+
+.myclass {
+	align: "right"
+}
+
+.uservalue {
+	margin-left: -30%;
+}
+
+.logo {
+      line-height: 60px;
+      position: fixed;
+      float: left;
+      margin: 16px 46px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 30px;
+      margin-left: 200px;
+      letter-spacing: 2px;
+}
+html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+}
+
+body {
+      font-family: "Helvetica Neue",sans-serif;
+      font-weight: lighter;
+}
+
+.content {
+      width: 94%;
+      margin: 4em auto;
+      font-size: 20px;
+      line-height: 30px;
+      text-align: justify;
+}
+
+#logo {
+      line-height: 60px;
+      position: fixed;
+      float: left;
+      margin: 16px 46px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 30px;
+      margin-left: 200px;
+      letter-spacing: 2px;
+}
+
+nav {
+      position: fixed;
+      width: 100%;
+      line-height: 60px;
+}
+
+nav ul {
+      line-height: 60px;
+      list-style: none;
+      background: rgba(0, 0, 0, 0);
+      overflow: hidden;
+      color: #fff;
+      padding: 0;
+      text-align: right;
+      margin: 0;
+      padding-right: 40px;
+      transition: 1s;
+}
+
+nav.black ul {
+      background: #000;
+}
+
+nav ul li {
+      display: inline-block;
+      padding: 16px 40px;;
+}
+
+nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+}
+nav ul li a:hover {
+cursor:pointer;
+}
+.menu-icon {
+      line-height: 60px;
+      width: 100%;
+      background: #000;
+      text-align: right;
+      box-sizing: border-box;
+      padding: 15px 24px;
+      cursor: pointer;
+      color: #fff;
+      display: none;
+}
+
+@media(max-width: 786px) {
+
+      .logo {
+            position: fixed;
+            top: 0;
+            margin-top: 16px;
+      }
+
+      nav ul {
+            max-height: 0px;
+            background: #000;
+      }
+
+      nav.black ul {
+            background: #000;
+      }
+
+      .showing {
+            max-height: 34em;
+      }
+
+      nav ul li {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 24px;
+            text-align: center;
+      }
+
+      .menu-icon {
+            display: block;
+      }
+
+}
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 </style>
+
+<script>
+   $(document).ready(function() {
+    //To hide the menu
+     $(".hidediv").click(function () {
+     $(".table").hide("fast",function(){
+    });
+   });    
+});
+ $(document).ready(function() {
+	    //To show the menu
+	     $(".showdiv").click(function () {
+	     $(".table").show("fast",function(){
+	    });
+	   });    
+	});
+  
+</script>
+
 
 </head>
 <body>
 
+	<div style="position: relative;">
+    <div style="position: absolute; top: 0; right: 0;">
+    <p>
+    <input type="button"  onclick="location.href='/logout'" value="logout" >
+    </p></div>
+</div>
+<div>
+	<p>
+    	<a type="button"  href="/index.html">Home</a>
+    </p>
+</div>
+<div class="wrapper">
+         <header>
+            <nav>
+               <div class="menu-icon">
+                  <i class="fa fa-bars fa-2x"></i>
+               </div>
+               <div id="logo">
+                FoodBolt
+               </div>
+               <div class="menu">
+                  <ul>
+                     <li><a href="index.html">Home</a></li>
+                     <li><a onclick="location.href='/userprofile'">Profile</a></li>
+                     <li><a onclick="location.href='/logout'">Logout</a></li>
+                  </ul>
+               </div>
+            </nav>
+         </header>
+</div>
+	<div class="logo">
+                FoodBolt
+               </div>
+
+	<div class="container emp-profile">
+		<div class="profile-pic">
+
+			<form method="post">
+
+				<div class="col-md-4">
+					<div class="profile-img">
+						<img src="/icons/profilePic.png" alt="" /> <br> <br>
+						<div class="file btn btn-lg">
+
+							<!-- <input type="file" name="file" /> -->
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="right-content">
+			<div class="col-md-6">
+				<div class="profile-head">
 
 
-<!------ Include the above in your HEAD tag ---------->
-<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar"> 
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="img-responsive" href="/"><img src="/img/logo1.png"></a>
+					<div>
+						<h3
+							th:text="${userDetails.first_name} + ' ' + ${userDetails.last_name}">
+						</h3>
+					</div>
+				</div>
+
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="home-tab"
+						data-toggle="tab" href="#home" role="tab" aria-controls="home"
+						aria-selected="true">About</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile" aria-selected="false">Edit</a></li>
+
+				</ul>
 			</div>
-			<div class="collapse navbar-collapse" id="MyNavbar">
-				<ul class="nav navbar-nav navbar-right">
+			<div class="row">
+				<div class="profile">
+					<div class="tab-content profile-tab" id="myTabContent">
+						<div align="left" class="tab-pane fade show active" id="home"
+							role="tabpanel" aria-labelledby="home-tab">
+							<div class="row">
+								<div class="col-md-7">
+									<label>User Id</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.cust_id}"></h6>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-7">
+									<label>First Name</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<!--  <p>Kshiti Ghelani</p> -->
+									<div>
+										<h6 th:text="${userDetails.First_name}"></h6>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-7">
+									<label>Last Name</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<!--  <p>Kshiti Ghelani</p> -->
+									<div>
+										<h6 th:text="${userDetails.last_name}"></h6>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-7">
+									<label>Email</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.email}"></h6>
+								</div>
+							</div>
+					
+							<div class="row">
+								<div class="col-md-7">
+									<label>City</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.city}"></h6>
+								</div>
+							</div>
 
-					<li class="active">
-						<a href="/">Home</a></li>
+							<div class="row">
+								<div class="col-md-7">
+									<label>State</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.state}"></h6>
+								</div>
+							</div>
 
-						<li><a th:href="@{/recipes(userID=${userID})}">About</a></li>
-						<li><a th:href="@{/user}">Profile</a></li>
-						<li><a th:href="@{/admincheck(userID=${userID})}">Admin</a></li>
-						<li><a th:href="@{logout}">Logout</a></li>
-			</ul>	
+							
+
+					 	<div class="row">
+								<div class="col-md-7">
+									<label>Preferred No.of Guests</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.default_guests}"></h6>
+								</div>
+							</div> 
+							
+							
+							<div class="row">
+								<div class="col-md-7">
+									<label>Preferred Restaurant</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${RestaurantName}"></h6>
+									
+								</div>
+							</div>
+							
+							
+							<div class="row">
+								<div class="col-md-7">
+									<label>Preferred BookingTime</label>
+								</div>
+								<div class="col-md-5 uservalue">
+									<h6 th:text="${userDetails.pref_bookingTime}"></h6>
+								</div>
+							</div>
+							
+						</div>
+						
+				
+						<div class="tab-pane fade" id="profile" role="tabpanel"
+							aria-labelledby="profile-tab">
+							<form method="post" th:action="@{/userprofile}"
+								th:object=${CustomerDetails} role="form">
+								<div class="row">
+									<div class="col-md-7">
+										<label>First Name</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="first_name"
+											name="first_name">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">
+										<label>Last Name</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="lastName"
+											name="last_name">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">
+										<label>City</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="city"
+											name="city">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-7">
+										<label>State</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="state" name="state">
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-7">
+										<label>Preferred Restaurant</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										
+										<select  name= "pref_restaurantID">
+										<option th:each ="restaurants : ${restaurants}" th:value="${restaurants.restaurant_id}" th:text="${restaurants.restaurant_name}"></option>
+									</select>
+									
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-7">
+										<label>Preferred Timing</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="time" class="form-control" id="pref_bookingTime" name="pref_bookingTime">
+									</div>
+								</div>
+
+							 	<div class="row">
+									<div class="col-md-7">
+										<label>Preferred No. Guests</label>
+									</div>
+									<div class="col-md-5 uservalue">
+										<input type="text" class="form-control" id="default_guests" name="default_guests">
+									</div>
+								</div> 
+						<button type="submit" class="btn btn-primary"><b>Update Profile</b></button>
+						</form>
+						<div>
+			         </div>
+                            </div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</nav>
-
-<div class="container emp-profile">
- <div class="profile-pic">
-
-            <form method="post">
-               
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="/img/profilePic.png" alt=""/>
-                           <br>
-                           <br>
-                            <div class="file btn btn-lg">
-                               
-                                <input type="file" name="file"/>
-                            </div>
-                        </div>
-                    </div>
-                    </form>
-       </div>
-          <div class="right-content">
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    
-  	
-  							<div>
-  							<h3 th:text="${userprofile.firstName} + ' ' + ${userprofile.lastName}"> </h3></div>
-  							<!-- <h3 th:text="${userprofile.lastName}"></h3> </div> -->
-  		
-  			
-						</div>
 		
-		
-                                    
-                                   <!--  <h6>
-                                        Web Developer and Designer
-                                    </h6> -->
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                                </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Edit</a>
-                                </li> 
-                            </ul>
-                        </div>
-                    
+<div class="col-md-7">
+ <p> <button class="hidediv">Hide History</button>
+  <button class="showdiv">Show List</button></p> 
+            
+       <div id="reservation">
+        <table class="table table-striped" style="width:50%">
+            <tr>
+            	<!-- <th>UserID</th> -->
                 
-               
-                <div class="row">
-                   <!-- <div class="col-md-4">
-                        <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br/>
-                            <a href="">Bootsnipp Profile</a><br/>
-                            <a href="">Bootply Profile</a>
-                            <p>SKILLS</p>
-                            <a href="">Web Designer</a><br/>
-                            <a href="">Web Developer</a><br/>
-                            <a href="">WordPress</a><br/>
-                            <a href="">WooCommerce</a><br/>
-                            <a href="">PHP, .Net</a><br/>
-                        </div>
-                    </div>  -->
-                 <!--    <div class="col-md-8"> --> 
-                 <div class="profile">
-                        <div class="tab-content profile-tab" id="myTabContent">
-                            <div align="left" class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>User Id</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                                <h6 th:text="${userprofile.userId}"> </h6>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                               <!--  <p>Kshiti Ghelani</p> -->
-                                               <div>
-  							<h6 th:text="${userprofile.firstName}"> </h6></div>
-                                            </div>
-                                        </div>
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>User Name</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                               <!--  <p>Kshiti Ghelani</p> -->
-                                               <div>
-  							<h6 th:text="${userprofile.userName}"> </h6></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                               <h6 th:text="${userprofile.email}"> </h6>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                               <h3 th:text="${userprofile.firstName}"> </h3>
-                                            </div>
-                                        </div> -->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Bio</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                               <h6 th:text="${userprofile.bio}"> </h6>
-                                            </div>
-                                        </div>
-                            </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                       <form method="post"  th:action="@{/addUser}" th:object = ${CustomerDetails} role="form">
-                                          <div class="row">
-                                            <div class="col-md-6">
-                                                <label>First Name</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                        <input type="text" class="form-control" id="firstName"  name="firstName" >
-                                            </div>
-                                        </div>
-                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Last Name</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                        <input type="text" class="form-control" id="lastName"  name="lastName" >
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>User Name</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                        <input type="text" class="form-control" id="userName"  name="userName" >
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Bio</label>
-                                            </div>
-                                            <div class="col-md-6 uservalue">
-                                               <input type="text" class="form-control" id="bio"  name="bio" >
-                                            </div>
-                                        </div>
-                                        <div>
-                                        <button type="submit" class="btn btn-primary"><b>Update Profile</b></button>
-                                        </div>
-                                </form>
-                            </div>
-                            
-                            </div> 
-                        </div>
-                    </div>
-                 </div>
-              </div>        
-       
- <style>
- .myclass {
- align:"right"
- }
- .uservalue {
- margin-left: -30%;
- }
- 
- </style>       
+                <th>Booking Date</th>
+                <th>BookingTime</th>
+                <th>Status</th>
+                 <th>Cancel Reservation</th>
+                
+            </tr>           
+           <tr th:each="bookings : ${bookings}">
+        
+        	<!-- <td th:text="${postForAdmin.userID}" th:id ="file">UserID</td> -->
+        	<td th:text="${bookings.BookingDate}">Booking Date</td>
+        	<td th:text="${bookings.BookingTime}">Booking Time</td>
+        	<td th:text="${bookings.status}">Status</td>
+        	<td> <a th:href="@{'/cancelBooking/'+ ${bookings.BookingID}}">Cancel</a></td>
+           </tr> 
+        </table>
+    </div>
+	
+</div>
+
+
 </body>
 </html>

@@ -3,6 +3,13 @@
 <head>
 	<title>FoodBolt</title>
 <link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 </head>
 <body>
 	<div class="split left">
@@ -10,23 +17,79 @@
         <div class="split right">
         <ul>
 		  <li><a onclick="location.href='/Signup'">Signup</a></li>        
-		  <li><a onclick="goBack()">Home</a></li>
+		  <li><a onclick="location.href='/'">Home</a></li>
 		</ul>
           <div class="login-container">
 	LOGIN
 <!--  <form method="post">  -->
-<form class="modal-content" method="post" th:action="@{login}" th:object = ${CustomerDetails}  enctype="multipart/form-data" >
-	<input type="email" id="email" name="email" placeholder="Email" required><br>
-	<input type="password" id="password" name="password" placeholder="Password" required><br>
+<form  method="post" th:action="@{login}" th:object = ${CustomerDetails}  enctype="multipart/form-data" >
+	<input class="form1" type="email" id="email" name="email" placeholder="Email" required><br>
+	<input class="form1" type="password" id="password" name="password" placeholder="Password" required><br>
 	<p th:if="${error}" th:text="${errorMessage}" class = "error"> </p>
-	<button>Submit</button>
+	<button class="buton">Submit</button>
+	<!--  <div class="g-signin2" data-onsuccess="onSignIn"></div>	-->
+	<br /><br />
+	<div class="btn-group" data-onsuccess="onSignIn">
+		<a class='btn btn-danger disabled'><i class="fa fa-google-plus" style="width:16px; height:20px"></i></a>
+		<i class='btn btn-danger' style="width:12em; height:37px"> Sign in with Google</i>
+	</div>
+	<br /><br />
+	<div class="btn-group">
+		<a class='btn btn-primary disabled'><i class="fa fa-facebook" style="width:16px; height:20px"></i></a>
+		<a class='btn btn-primary ' href='' style="width:12em; height:37px"> Sign in with Facebook</a>
+	</div>	
 </form>
 </div>
 </div>
+
 <script type="text/javascript">
 function goBack() {
     window.history.back();
 }
+
+function onSignIn(googleUser){
+	  var profile = googleUser.getBasicProfile();
+	  $.cookie.raw = true;
+	$.cookie('email', profile.getEmail());
+	$.cookie('firstName', profile.getGivenName());
+	$.cookie('lastName', profile.getFamilyName());
+	addSessionForGoogle(profile.getEmail(), profile.getGivenName(), profile.getFamilyName())
+    window.location.href= '/restaurant';
+}
+
+function addSessionForGoogle(emailID, firstName, lastName) {
+	var googleSession = {
+            email: emailID,
+            first_name:firstName,
+            last_name:lastName,
+            password:"fromGoogle"
+        }
+	
+	$.ajax({
+        url: '/addSessionForGoogle',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+            
+        },
+        data: JSON.stringify(googleSession)
+    });
+}
 </script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="638029882217-obq35p465sset9voj21o95ttqvmeii6o.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript" src="//platform.linkedin.com/in.js">
+    api_key: LinkedInKEY
+    authorize: true
+    onLoad: onLinkedInLoad
+    scope: r_basicprofile r_emailaddress
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
 </body>
 </html>

@@ -2,13 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>FoodBolt</title>
-	<link rel="stylesheet" type="text/css" href="/css/servicelogin.css"/>
+	<link rel="stylesheet" href="css/servicelogin.css"/>
 </head>
 <body>
 	
 	<div class="split left">
 	</div>
         <div class="split right">
+        <ul>
+		  <li><a onclick="location.href='/addServiceProvider'">Signup</a></li>        
+		  <li><a onclick="location.href='/'">Home</a></li>
+		</ul>
           <div class="login-container">
 	RESTAURANT LOGIN
 <form class="modal-content" method="post" th:action="@{loginservice}" th:object = ${ServiceProvider}  enctype="multipart/form-data" >
@@ -18,5 +22,10 @@
 </form>
 </div>
 </div>
+<script type="text/javascript">
+function goBack() {
+    window.history.back();
+}
+</script>
 </body>
 </html>

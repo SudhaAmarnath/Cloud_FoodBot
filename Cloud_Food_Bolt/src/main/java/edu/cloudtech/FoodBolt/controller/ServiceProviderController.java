@@ -43,6 +43,22 @@ public class ServiceProviderController {
 		return "ServiceProvider";
 	}
 	
+	@GetMapping("/restaurant")
+	public String restaurant(Model model) {
+	System.out.println("Inside Get Restaurant method ****");
+	List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
+	model.addAttribute("restaurants", restaurants);
+	 return "restaurant";
+	}
+	
+	@RequestMapping(value = "/getRestaurantsList", method = RequestMethod.GET)
+	public String getRestaurantsList(Model model, HttpServletRequest request) {
+		System.out.println("In getRestaurantsList controller");
+		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
+		model.addAttribute("restaurants", restaurants);
+		 return "restaurant";
+	}
+	
 	@RequestMapping(value = "/serviceProvider/{restaurant_id}", method = RequestMethod.GET)
 	public ServiceProvider getRestaurant(@PathVariable int restaurant_id) {
 		
@@ -66,7 +82,7 @@ public class ServiceProviderController {
 	public String  addServiceProvider(@ModelAttribute(name="ServiceProvder") ServiceProvider servProv, Model model,  HttpSession session) {
 	
 		serviceproviderService.addServiceProviders(servProv);
-		return "/";
+		return "servicelogin";
 	}
 	
 	

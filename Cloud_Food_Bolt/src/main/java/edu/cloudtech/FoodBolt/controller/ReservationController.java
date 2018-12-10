@@ -29,6 +29,9 @@ public class ReservationController {
 	@Autowired
 	ServiceProviderService serviceproviderService;
 	
+	@Autowired
+	CustomerDetailsController customerController;
+	
 //	@RequestMapping(value = "/reserveTable", method = RequestMethod.GET)
 //	public List getAllCustomers() {
 //		
@@ -67,18 +70,15 @@ public class ReservationController {
 		{
     		System.out.println("Time Stamp " + tblReserv.getBookingTime());
     		Integer restaurantID= (Integer)session.getAttribute("restID");
+    		int cust_id = (int)request.getSession().getAttribute("cust_ID");
+    		tblReserv.setUserID(cust_id);
 		tblReserv.setRestaurantID(restaurantID);
 		tblReserv.setStatus("RESERVED");
 		System.out.println("Dynamic Restaurant ID" + tblReserv.getRestaurantID());
-		
-		
 		 reservationService.reserveTable(tblReserv);
-		
-		 
-		 
+	 
 		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
-		
-		
+
 		model.addAttribute("restaurants", restaurants);
 		}
 		
@@ -97,6 +97,24 @@ public class ReservationController {
 	}
 	
 	
+//	@RequestMapping(value = "/reserveTable", method = RequestMethod.GET)
+//	public String  getReservationByCustID(Model model, HttpSession session) {
+//		
+//		//Need to test this
+//		TableReservation reserv = new TableReservation();
+//		int cust_ID = (Integer) session.getAttribute("cust_ID");
+//		 
+//		 List<TableReservation> bookings = reservationService.getReservationByCustID(cust_ID);
+//			
+//			serviceproviderService.getServiceProvider(cust_ID);
+//		model.addAttribute("bookings", bookings);
+//		
+//		return "userprofile";
+//	
+//	}
+	
+	
+	
 	@RequestMapping(value = "/cancelReservation/{bookingID}", method = RequestMethod.GET)
 	public String  cancelReservation(@PathVariable int bookingID, Model model, HttpSession session) {
 		
@@ -112,6 +130,26 @@ public class ReservationController {
 			serviceproviderService.getServiceProvider(rest_id);
 		model.addAttribute("reservation", reservation);
 		 return "ServiceProvider";
+	}
+	
+	@RequestMapping(value = "/cancelBooking/{bookingID}", method = RequestMethod.GET)
+	public String  cancelReservationByUser(@PathVariable int bookingID, Model model, HttpSession session, HttpServletRequest request) {
+		
+		//Need to test this
+		TableReservation reserv = new TableReservation();
+		 reservationService.cancelReservation(bookingID);
+		
+		 
+		 int rest_id = (Integer) session.getAttribute("restID");
+		 
+		 List<TableReservation> reservation = reservationService.getReservationByRestaurantID(rest_id);
+			
+			serviceproviderService.getServiceProvider(rest_id);
+		model.addAttribute("reservation", reservation);
+		
+		customerController.getCustome(model, request);
+		
+		return "userprofile";
 	}
 	
 	
