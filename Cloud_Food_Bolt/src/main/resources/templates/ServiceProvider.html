@@ -27,27 +27,47 @@
 	    });
 	   });    
 	});
-  
 </script>
-
+<style>
+li:hover {
+	cursor:pointer;
+}
+body {  
+background-image: 
+    url("/icons/restaurant.jpg");
+      background-size: cover;
+}
+#reservation {
+background-color:white;
+border-radius:10px;
+margin-top:100px;
+width:50%;
+}
+#tab {
+margin-top:20px;
+margin-bottom:20px;
+}
+</style>
 </head>
 <body>
-
-	
-	<div style="position: relative;">
-    <div style="position: absolute; top: 0; right: 0;">
-    <p>
-    <input type="button"  onclick="location.href='/logout'" value="logout" >
-    </p></div>
-</div>
-
-<p  th:text="Welcome+' ' + Admin+ '!!!'"> </p> 
-
- <p> <button class="hidediv">Hide List</button>
-  <button class="showdiv">Show List</button></p> 
-            
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">FoodBolt</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Service Provider</a></li>
+      <li class="hidediv"><a>Hide Reservations</a></li>
+      <li class="showdiv"><a href="#">Show Reservations</a></li>
+      <li><a href="#">Profile</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a onclick="location.href='/logout'"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav> <center>
        <div id="reservation">
-        <table class="table table-striped" style="width:50%">
+        <table id="tab" class="table table-hover" style="width:100%">
             <tr>
             	<!-- <th>UserID</th> -->
                 
@@ -63,12 +83,14 @@
         	<td th:text="${reservation.BookingDate}">Booking Date</td>
         	<td th:text="${reservation.BookingTime}">Booking Time</td>
         	<td th:text="${reservation.status}">Status</td>
-        	<td> <a th:href="@{'/cancelReservation/'+ ${reservation.BookingID}}">Cancel Reservation</a></td>
+        	<td> <a class="btn btn-danger btn-lg"  th:href="@{'/cancelReservation/'+ ${reservation.BookingID}}">
+          <span class="glyphicon glyphicon-remove"></span> Cancel</a></td>
            </tr> 
+           
         </table>
+        
     </div>
-	
-
+	</center>
 
 
 </body>

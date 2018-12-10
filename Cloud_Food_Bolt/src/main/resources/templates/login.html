@@ -23,10 +23,10 @@
 	LOGIN
 <!--  <form method="post">  -->
 <form  method="post" th:action="@{login}" th:object = ${CustomerDetails}  enctype="multipart/form-data" >
-	<input type="email" id="email" name="email" placeholder="Email" required><br>
-	<input type="password" id="password" name="password" placeholder="Password" required><br>
+	<input class="form1" type="email" id="email" name="email" placeholder="Email" required><br>
+	<input class="form1" type="password" id="password" name="password" placeholder="Password" required><br>
 	<p th:if="${error}" th:text="${errorMessage}" class = "error"> </p>
-	<button>Submit</button>
+	<button class="buton">Submit</button>
 	<!--  <div class="g-signin2" data-onsuccess="onSignIn"></div>	-->
 	<br /><br />
 	<div class="btn-group" data-onsuccess="onSignIn">

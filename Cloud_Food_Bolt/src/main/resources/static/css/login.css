@@ -2,7 +2,7 @@
   text-align: center;
   margin-top:150px;
 }
-input {
+.form1 {
   margin-top:20px;
   width:60%;
   position: relative;
@@ -15,10 +15,10 @@ input {
   padding:8px;
   border-radius:4px;
 }
-input:focus {
+.form1:focus {
 	border-color:dodgerBlue;
 }
-button {
+.buton {
 	padding:8px;
 	width:60%;
 	background-color:deepskyblue;
@@ -90,6 +90,7 @@ li a {
 
 li a:hover {
   background-color: #111;
+  cursor:pointer;
 }
 
 .g-signin2{

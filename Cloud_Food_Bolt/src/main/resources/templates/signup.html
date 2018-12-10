@@ -17,9 +17,9 @@
 	SIGN UP
 <!--  <form method="post">  -->
 <form class="modal-content" method="post" th:action="@{Signup}" th:object = ${CustomerDetails}  enctype="multipart/form-data" >
-	<input type="text" id="fname" name="first_name" placeholder="First Name" required><br>
-	<input type="text" id="lname" name="last_name" placeholder="Last Name" required><br>
-	<input type="email" id="email" name="email" placeholder="Email" required><br>
+	<input type="text" pattern="[a-zA-Z\s]*$" id="fname" name="first_name" placeholder="First Name" required><br>
+	<input type="text" pattern="[a-zA-Z\s]*$" id="lname" name="last_name" placeholder="Last Name" required><br>
+	<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" placeholder="Email" required><br>
 	<input type="password" id="password" name="password" placeholder="Password" required><br>
 	<button>Submit</button>
 </form>

@@ -142,7 +142,7 @@ public class CustomerDetailsController {
 		
 		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
 		model.addAttribute("restaurants", restaurants);
-		return "restaurant";
+		return "login";
 	
 	}
 }
