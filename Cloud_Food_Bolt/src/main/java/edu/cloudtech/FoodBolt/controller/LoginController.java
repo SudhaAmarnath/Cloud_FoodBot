@@ -133,7 +133,7 @@ public class LoginController {
 		String First_Name ="";
 		String Middle_Name ="";
 		String Last_Name ="";
-		String default_no_of_Guests="";
+		int default_no_of_Guests=0;
 		String CuisineType="";
 		String SELECT_SQL = "SELECT * FROM CUST_DETAILS where Email = ?";
 		
