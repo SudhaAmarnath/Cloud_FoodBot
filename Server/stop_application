@@ -1,0 +1,6 @@
+#!/bin/bash
+isExistApp=`pgrep java`
+if [[ -n  $isExistApp ]]; then
+    pkill -f 'java.*original-Food_Bolt-0.0.1-SNAPSHOT.jar'
+fi
+rm -rf /tmp/original-Food_Bolt-0.0.1-SNAPSHOT.jar
