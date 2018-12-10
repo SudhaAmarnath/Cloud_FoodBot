@@ -204,6 +204,25 @@ li.dropdown {
 }
 </style>
 
+<script>
+   $(document).ready(function() {
+    //To hide the menu
+     $(".hidediv").click(function () {
+     $(".table").hide("fast",function(){
+    });
+   });    
+});
+ $(document).ready(function() {
+	    //To show the menu
+	     $(".showdiv").click(function () {
+	     $(".table").show("fast",function(){
+	    });
+	   });    
+	});
+  
+</script>
+
+
 </head>
 <body>
 
@@ -215,7 +234,7 @@ li.dropdown {
 </div>
 <div>
 	<p>
-    	<a type="button"  href="index.html">Home</a>
+    	<a type="button"  href="/index.html">Home</a>
     </p>
 </div>
 <div class="wrapper">
@@ -276,6 +295,7 @@ li.dropdown {
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile" aria-selected="false">Edit</a></li>
+
 				</ul>
 			</div>
 			<div class="row">
@@ -321,14 +341,7 @@ li.dropdown {
 									<h6 th:text="${userDetails.email}"></h6>
 								</div>
 							</div>
-							<!-- <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Phone</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                               <h3 th:text="${userDetails.firstName}"> </h3>
-                                            </div>
-                                        </div> -->
+					
 							<div class="row">
 								<div class="col-md-7">
 									<label>City</label>
@@ -454,17 +467,41 @@ li.dropdown {
 								</div> 
 						<button type="submit" class="btn btn-primary"><b>Update Profile</b></button>
 						</form>
-						
-						</div>
 						<div>
 			         </div>
                             </div>
-
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		
+<div class="col-md-7">
+ <p> <button class="hidediv">Hide History</button>
+  <button class="showdiv">Show List</button></p> 
+            
+       <div id="reservation">
+        <table class="table table-striped" style="width:50%">
+            <tr>
+            	<!-- <th>UserID</th> -->
+                
+                <th>Booking Date</th>
+                <th>BookingTime</th>
+                <th>Status</th>
+                 <th>Cancel Reservation</th>
+                
+            </tr>           
+           <tr th:each="bookings : ${bookings}">
+        
+        	<!-- <td th:text="${postForAdmin.userID}" th:id ="file">UserID</td> -->
+        	<td th:text="${bookings.BookingDate}">Booking Date</td>
+        	<td th:text="${bookings.BookingTime}">Booking Time</td>
+        	<td th:text="${bookings.status}">Status</td>
+        	<td> <a th:href="@{'/cancelBooking/'+ ${bookings.BookingID}}">Cancel</a></td>
+           </tr> 
+        </table>
+    </div>
+	
+</div>
 
 
 </body>

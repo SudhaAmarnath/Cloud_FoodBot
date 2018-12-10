@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.cloudtech.FoodBolt.dao.CustomerDetails;
 import edu.cloudtech.FoodBolt.dao.ServiceProvider;
+import edu.cloudtech.FoodBolt.dao.TableReservation;
 import edu.cloudtech.FoodBolt.service.CustomerDetailsService;
+import edu.cloudtech.FoodBolt.service.ReservationService;
 import edu.cloudtech.FoodBolt.service.ServiceProviderService;
 
 
@@ -30,6 +32,9 @@ public class CustomerDetailsController {
 	
 	@Autowired
 	ServiceProviderService serviceproviderService;
+	
+	@Autowired
+	ReservationService reservationService;
 	
 	@RequestMapping(value = "/customerDetails", method = RequestMethod.GET)
 	public List getAllCustomers() {
@@ -67,6 +72,14 @@ public class CustomerDetailsController {
 		}
 		List<ServiceProvider> restaurants = serviceproviderService.getAllServiceProviders();
 		model.addAttribute("restaurants", restaurants);
+
+		 List<TableReservation> bookings = reservationService.getReservationByCustID(cust_id);
+			
+			serviceproviderService.getServiceProvider(cust_id);
+		model.addAttribute("bookings", bookings);
+		
+		
+		
 		return "userprofile";
 		
 	}
